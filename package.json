@@ -20,6 +20,7 @@
     "body-parser": "^1.18.2",
     "chalk": "^2.4.1",
     "express": "^4.14.0",
+    "nodemon": "^1.18.10",
     "pg": "^7.4.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -29,7 +30,8 @@
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^4.37.8"
+    "sequelize": "^4.37.8",
+    "thunk": "0.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

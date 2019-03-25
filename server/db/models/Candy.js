@@ -24,10 +24,9 @@ const Candy = db.define("candy", {
       max: 10
     }
   },
-  imageURL: {
+  imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      "https://media4.s-nbcnews.com/j/newscms/2018_43/1379169/alejandra-ramos-candy-pinata-cake-snickers-banoffee-pie-today-square-181022-05_8e323d2265e4baa7a7441bf7d6dbf900.today-inline-large.jpg"
+    defaultValue: null
   }
 });
 

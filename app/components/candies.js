@@ -1,52 +1,69 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getCandy } from "../reducers/candies";
+import { getCandy, getSingleCandy } from "../reducers/candies";
+import SingleCandy from "./SingleCandy";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Root from "./root";
+import Root from "./Root";
 
 class OldCandies extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
   componentDidMount() {
     this.props.getCandy();
   }
+
+  handleClick(id) {
+    this.props.getSingleCandy(id);
+  }
   render() {
+    if (!this.props.candies.length) {
+      return <h1>Loading</h1>;
+    }
     return (
       <div>
-        <Router>
+        <nav>Candies</nav>
+        <main>
+          <h1>Look At This Candy!</h1>
           <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-                <Route exact path="/" component={Root} />
-              </li>
-            </ul>
-          </div>
-        </Router>
-        <div>
-          <nav>Candies</nav>
-          <main>
-            <h1>Look At This Candy!</h1>
-            <div>
-              {this.props.candies.map(candy => (
+            {this.props.candies.map(
+              candy => (
                 <div>
-                  <h2 key={candy.id}>{candy.name}</h2>
-                  <p key={candy.id}>{candy.description}</p>
-                  <img key={candy.id} src={candy.imageURL} />
+                  <Link
+                    to={`/candies/${candy.id}`}
+                    key={candy.id}
+                    onClick={() => this.handleClick(candy.id)}
+                  >
+                    {candy.name}
+                  </Link>
+                  <Route
+                    path={`/candies/${candy.id}`}
+                    component={SingleCandy}
+                  />
                 </div>
-              ))}
-            </div>
-          </main>
-        </div>
+              )
+              // <div key={candy.id}>
+              //   <h2>{candy.name}</h2>
+              //   <p>{candy.description}</p>
+              //   <img src={candy.imageUrl} />
+              // </div>
+            )}
+          </div>
+        </main>
       </div>
     );
   }
 }
 
 const mapState = state => ({
-  candies: state.candyReducer.candies
+  candies: state.candyReducer.candies,
+  loading: state.candyReducer.loading
 });
 
 const mapDispatch = dispatch => ({
-  getCandy: () => dispatch(getCandy())
+  getCandy: () => dispatch(getCandy()),
+  getSingleCandy: id => dispatch(getSingleCandy(id))
 });
 
 const Candies = connect(

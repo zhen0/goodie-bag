@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Candies from "./candies";
+import Candies from "./Candies";
 
 const Root = () => {
   return (
     <div>
-      <Router>
+      {/* <Router>
         <ul>
           <li>
-            <Link to="/candies">Candies</Link>
+           
             <Route exact path="/candies" component={Candies} />
           </li>
         </ul>
-      </Router>
+      </Router> */}
       <div>
         <nav>Goodie Bag</nav>
         <main>
